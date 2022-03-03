@@ -19,15 +19,15 @@ def create(details: CreateJobRequest, db: Session = Depends(get_db)):
         "success": True,
         "created_id": to_create.id
     }
-
-@app.get("/", response_model=CreateJobRequest)
+#  response_model=CreateJobRequest 
+@app.get("/")
 def get_posts(db: Session = Depends(get_db)):
 
-    posts = db.query(Job).all()
+    posts = db.query(Job.id, Job.title, Job.description).all()
 
     if not posts:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail="No posts was not found")
+                            detail="No posts was found")
 
     return {"data": posts}
 
