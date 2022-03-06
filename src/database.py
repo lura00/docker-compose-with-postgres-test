@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from pydantic import Field, BaseSettings
@@ -18,5 +18,5 @@ def get_db():
     db = SessionLocal()
     try:
         yield db
-    except:
+    finally:
         db.close()

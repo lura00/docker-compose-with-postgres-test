@@ -26,3 +26,8 @@ services:
 
 volumes:
   postgres_data:
+
+    # User docker-compose build
+    # ==> docker-compose up -d
+    # check logs, docker-compose logs web, see that uvicorn started.
+    # ==> docker-compose exec db psql --username:<username> --dbname=<dbname> if your are in, all worked.
