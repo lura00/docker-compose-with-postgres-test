@@ -31,7 +31,7 @@ CREATE TABLE public.discounts (
 );
 
 
-ALTER TABLE public.discounts OWNER TO postgres;
+ALTER TABLE public.discounts OWNER TO 'test-breakingbad';
 
 --
 -- Name: inventory; Type: TABLE; Schema: public; Owner: postgres
@@ -45,7 +45,7 @@ CREATE TABLE public.inventory (
 );
 
 
-ALTER TABLE public.inventory OWNER TO postgres;
+ALTER TABLE public.inventory OWNER TO "test-breakingbad";
 
 --
 -- Name: prices; Type: TABLE; Schema: public; Owner: postgres
@@ -58,7 +58,7 @@ CREATE TABLE public.prices (
 );
 
 
-ALTER TABLE public.prices OWNER TO postgres;
+ALTER TABLE public.prices OWNER TO 'test-breakingbad';
 
 --
 -- Name: products; Type: TABLE; Schema: public; Owner: postgres
@@ -72,7 +72,7 @@ CREATE TABLE public.products (
 );
 
 
-ALTER TABLE public.products OWNER TO postgres;
+ALTER TABLE public.products OWNER TO 'test-breakingbad';
 
 --
 -- Name: sales; Type: TABLE; Schema: public; Owner: postgres
@@ -85,7 +85,7 @@ CREATE TABLE public.sales (
 );
 
 
-ALTER TABLE public.sales OWNER TO postgres;
+ALTER TABLE public.sales OWNER TO 'test-breakingbad';
 
 --
 -- Name: sold_products; Type: TABLE; Schema: public; Owner: postgres
@@ -99,7 +99,7 @@ CREATE TABLE public.sold_products (
 );
 
 
-ALTER TABLE public.sold_products OWNER TO postgres;
+ALTER TABLE public.sold_products OWNER TO 'test-breakingbad';
 
 --
 -- Name: store_addresses; Type: TABLE; Schema: public; Owner: postgres
@@ -114,7 +114,7 @@ CREATE TABLE public.store_addresses (
 );
 
 
-ALTER TABLE public.store_addresses OWNER TO postgres;
+ALTER TABLE public.store_addresses OWNER TO 'test-breakingbad';
 
 --
 -- Name: stores; Type: TABLE; Schema: public; Owner: postgres
@@ -126,7 +126,7 @@ CREATE TABLE public.stores (
 );
 
 
-ALTER TABLE public.stores OWNER TO postgres;
+ALTER TABLE public.stores OWNER TO 'test-breakingbad';
 
 --
 -- Data for Name: discounts; Type: TABLE DATA; Schema: public; Owner: postgres
