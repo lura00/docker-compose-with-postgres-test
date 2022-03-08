@@ -3,10 +3,10 @@ import psycopg2
 
 app = FastAPI()
 
-
 @app.on_event("startup")
 def startup():
     app.db = psycopg2.connect("postgresql://test-breakingbad:testpass@db:5432/bbdb")
+    #app.db = psycopg2.connect("postgresql://postgres:1234@localhost:5432/bbdb")
 
 @app.on_event("shutdown")
 def shutdown():
@@ -14,12 +14,12 @@ def shutdown():
 
 
 @app.get("/stores")
-def stores():
+async def stores():
     with app.db.cursor() as cur:
+
         cur.execute("SELECT id, name from stores")
         names = cur.fetchall()
-        for name in names:
-            return names
+        return names
 
 @app.get("/stores/adresses")
 def stores():
@@ -30,30 +30,14 @@ def stores():
 
 @app.get("/")
 def root():
-   return {"message": "Welcome to a Kjell-production"}
-
+    return("WELCOME TO BRAKING BAD")
 
 @app.get("/stores/{name}")
 async def read_item(name: str):
     with app.db.cursor() as cur:
-        hej = cur.execute("SELECT * FROM stores WHERE name = %s", (name,))
-        data = cur.fetchall()
-        if not data in hej:
-            print("Hejdå")            
-            #raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details="No stores was found")
-        return list(data)
-
-
-
-#SLASK
-#@app.get("/stores/{name}")
-#async def read_item(name: str): 
-#    with app.db.cursor() as cur:
-#        cur.execute("SELECT {name} FROM stores")
-#        names = cur.fetchall()
-#        if name == "":
-#            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details="No stores was found")
-#        return list{"name":name}
-
-
-#c.execute('SELECT * FROM stocks WHERE symbol=?', t)
+        cur.execute("SELECT name FROM stores WHERE name=(%s)", (name,))
+        names = cur.fetchall()
+        if (name,) not in names:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No stores was found")
+        else:
+            return name
