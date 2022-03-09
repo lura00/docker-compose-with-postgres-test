@@ -16,8 +16,7 @@ def shutdown():
 
 @app.get("/")
 def root():
-   return {"message": "Welcome to a Kjell-production"}
-
+    return("WELCOME TO BRAKING BAD")
 
 @app.get("/stores")
 def stores():
