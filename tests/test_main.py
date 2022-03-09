@@ -1,31 +1,26 @@
-from unicodedata import name
-from urllib import response
-from urllib.error import HTTPError
 from fastapi.testclient import TestClient
-import pytest
-import requests
 from src.main import app
 
 client = TestClient(app)
 
 
+# To runt pytest: docker-compose exec web pytest . -v
+# -v (verbose, to get more info)
+
+
 def test_stores():    
     response = client.get("/stores")
     assert response.status_code == 200
-    # assert response.json() == {
-    #     'dd4cf820-f946-4f38-8492-ca5dfeed0d74','Djurjouren', 
-    #     '75040436-56de-401b-8919-8d0063ac9dd7', 'Djuristen',
-    #     'ff53d831-c2fe-4fe8-9f67-5d69118670f2', 'Den Lilla Djurbutiken',
-    #     '676df1a1-f1d1-4ac5-9ee3-c58dfe820927', 'Den Stora Djurbutiken',
-    #     'a04bb312-9738-4db2-a7a5-ed6be9938afd', 'Noahs Djur & Båtaffär'
-    # }
 
 
 def test_store_address():
-    response = client.get("/stores/{name}")
+    response = client.get("/stores/Djuristen")
     assert response.status_code == 200
-    if response is None:
-        assert response.status_code == 404
+
+
+def test_store_address_non_existing():
+    response = client.get("/stores/InfernoOnline")
+    assert response.status_code == 404
 
 
 def test_cities():
@@ -33,3 +28,11 @@ def test_cities():
     assert response.status_code == 200
 
 
+def test_city_name():
+    response = client.get("/city/12345")
+    assert response.status_code == 200
+
+
+def test_city_name_non_existing():
+    response = client.get("/city/55555555")
+    assert response.status_code == 404
