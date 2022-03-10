@@ -14,7 +14,7 @@ def test_stores():
 
 
 def test_store_address():
-    response = client.get("/stores/Djuristen")
+    response = client.get("/stores/Djurjouren")
     assert response.status_code == 200
 
 
@@ -31,6 +31,7 @@ def test_cities():
 def test_city_name():
     response = client.get("/city/12345")
     assert response.status_code == 200
+    assert response.json() == {"data": "Stockholm"}
 
 
 def test_city_name_non_existing():
