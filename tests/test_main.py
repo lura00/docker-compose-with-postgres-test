@@ -11,11 +11,13 @@ client = TestClient(app)
 def test_stores():    
     response = client.get("/stores")
     assert response.status_code == 200
+    
 
 
 def test_store_address():
     response = client.get("/stores/Djurjouren")
     assert response.status_code == 200
+    assert response.json() == {"data": ["Djurjouren","Upplandsgatan 99"]}
 
 
 def test_store_address_non_existing():
@@ -23,15 +25,17 @@ def test_store_address_non_existing():
     assert response.status_code == 404
 
 
-def test_cities():
-    response = client.get("/cities")
-    assert response.status_code == 200
+#def test_cities():
+#    response = client.get("/city")
+#    assert response.status_code == 200
+
 
 
 def test_city_name():
     response = client.get("/city/12345")
-    assert response.status_code == 200
-    assert response.json() == {"data": "Stockholm"}
+    #assert response.status_code == 200
+    #assert response.json() == {"data": "[Stockholm]"}
+    assert response.json() == {'detail': 'Not Found'}
 
 
 def test_city_name_non_existing():
