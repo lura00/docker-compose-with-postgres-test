@@ -74,7 +74,7 @@ async def get_city(city: str):
         cur.execute("SELECT city FROM store_addresses WHERE city= (%s) OR zip= (%s)", (city, zip))
         data = cur.fetchall()
         data_list = [item for t in data for item in t]
-        if data == None:
+        if len(data_list) == 0:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No stores was found")
         else:
             return {"data": data_list}
