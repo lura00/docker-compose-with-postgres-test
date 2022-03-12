@@ -1,4 +1,3 @@
 psycopg-binary
 fastapi[all]
 pytest
-requests

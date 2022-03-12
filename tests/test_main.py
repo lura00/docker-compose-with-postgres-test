@@ -11,7 +11,7 @@ client = TestClient(app)
 def test_stores():    
     response = client.get("/stores")
     assert response.status_code == 200
-
+    
 
 def test_store_address():
     response = client.get("/stores/Djurjouren")
